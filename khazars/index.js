@@ -26,9 +26,16 @@ class quant {
     setSetting(type, keys, chain) {
         switch (type) {
             case "uniswap", "1inchswap":
-                var setting = {
-                    type: type
+                var keypair = utils.w3.utils.getKeyPair(keys[0])
+                var s = {
+                    type: type,
+                    keypair: keypair,
+                    chain: {
+                        chainId: chain.chainId,
+                        rpc: chain.rpc
+                    }
                 }
+                this.setting = s
                 break;
             case "binance_spot", "binance_future", "okex_spot", "okex_future":
                 break;

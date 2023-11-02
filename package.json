@@ -1,5 +1,6 @@
 {
   "dependencies": {
-    "bignumber.js": "^9.1.2"
+    "bignumber.js": "^9.1.2",
+    "web3": "^4.2.1"
   }
 }
