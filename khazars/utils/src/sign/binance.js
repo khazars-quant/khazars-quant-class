@@ -14,9 +14,10 @@ function signData(SEC, data) {
         }
     });
     encodeData += 'timestamp=' + time;
-    encodeData = encodeHMAC(SEC, encodeData);
+    var _encodeData = encodeHMAC(SEC, encodeData);
     data.time = time;
-    data.sign = encodeData;
+    data.sign = _encodeData;
+    data.path = encodeData
     return data;
 }
 
