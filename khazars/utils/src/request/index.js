@@ -8,7 +8,20 @@ async function doRequest(options) {
         });
     });
 }
-
+async function req(options) {
+    try {
+        return {
+            status: true,
+            data: doRequest(options)
+        }
+    } catch (e) {
+        return {
+            status: false,
+            error: e
+        }
+    }
+}
 module.exports = {
     doRequest,
+    req,
 }

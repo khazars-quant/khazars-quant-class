@@ -32,13 +32,26 @@ class main {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',
-            'url': link(path) + "?" + data.path + '&signature=' + data.sign,
+            'url': link(account) + "?" + data.path + '&signature=' + data.sign,
             'headers': {
                 'Content-Type': 'application/json',
                 'X-MBX-APIKEY': SEC
             }
         };
-        return req.doRequest(options);
+        return request.req(options);
+    }
+
+    async balance(SEC, data) {
+        data = await sign.signData(SEC, data)
+        var options = {
+            'method': 'GET',
+            'url': link(balance) + "?" + data.path + '&signature=' + data.sign,
+            'headers': {
+                'Content-Type': 'application/json',
+                'X-MBX-APIKEY': SEC
+            }
+        };
+        return request.req(options);
     }
 
 }
