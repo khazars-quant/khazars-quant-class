@@ -7,6 +7,7 @@ function encodeHMAC(SEC, data) {
 function signData(SEC, data) {
     var time = Date.now();
     var encodeData = ""
+    var data = data || {}
     var k = Object.keys(data)
     k.forEach(e => {
         if (e != "path") {

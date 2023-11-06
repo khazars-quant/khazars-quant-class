@@ -21,7 +21,7 @@ class main {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',
-            'url': link(account) + "?" + data.path + '&signature=' + data.sign,
+            'url': this.link("account") + "?" + data.path + '&signature=' + data.sign,
             'headers': {
                 'Content-Type': 'application/json',
                 'X-MBX-APIKEY': SEC

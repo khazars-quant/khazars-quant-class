@@ -21,11 +21,12 @@ class quant {
         chain, // option , for defi require
     ) {
         this.setSetting(type, keys, chain)
-        this.setting = true;
+        return this;
     }
     setSetting(type, keys, chain) {
         switch (type) {
-            case "uniswap", "1inchswap":
+            case "uniswap":
+            case "1inchswap":
                 var keypair = utils.w3.utils.getKeyPair(keys[0])
                 var s = {
                     type: type,
@@ -39,7 +40,10 @@ class quant {
                 this.setting = s
                 this.obj = {};
                 break;
-            case "binance_spot", "binance_future", "okex_spot", "okex_future":
+            case "binance_spot":
+            case "binance_future":
+            case "okex_spot":
+            case "okex_future":
                 var s = {
                     type: type,
                     defi: false,
@@ -72,8 +76,8 @@ class quant {
     }
 
     //🚀 The core functions of mixed calling . 
-    async account(SEC, data) {
-
+    async account(data) {
+        return this.obj.account(data)
     }
 
 }
