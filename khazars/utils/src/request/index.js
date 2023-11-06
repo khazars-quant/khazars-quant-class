@@ -12,7 +12,7 @@ async function req(options) {
     try {
         return {
             status: true,
-            data: doRequest(options)
+            data: await doRequest(options)
         }
     } catch (e) {
         return {
