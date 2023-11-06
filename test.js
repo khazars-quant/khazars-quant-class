@@ -9,7 +9,7 @@ async function test() {
     //     )
     // const k = new khazars.quant()
     const k = new khazars.quant(
-        "binance_spot", [process.env.BINANCE_TEST_KEY, BINANCE_TEST_SEC]
+        "binance_spot", [process.env.BINANCE_TEST_KEY, process.env.BINANCE_TEST_SEC]
     )
     console.log(k)
     const acc = await k.account();
