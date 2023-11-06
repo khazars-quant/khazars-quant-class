@@ -13,7 +13,12 @@ function signData(SEC, data) {
             encodeData += `${e}=${data[e]}&`
         }
     });
-    encodeData += 'timestamp=' + time;
+
+    if (k.length > 0) {
+        encodeData += 'timestamp=' + time;
+    } else {
+        encodeData += '?timestamp=' + time;
+    }
     var _encodeData = encodeHMAC(SEC, encodeData);
     data.time = time;
     data.sign = _encodeData;

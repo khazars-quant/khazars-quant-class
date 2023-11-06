@@ -16,19 +16,16 @@ class main {
             multiAssetsMargin: "/fapi/v1/multiAssetsMargin"
         }
         //The default headers of request 
-    constructor(url) {
-            if (url) {
-                this.baseUrl = url;
-            } else {
-                this.baseUrl = "https://fapi.binance.com/fapi/v"
-            }
+    constructor(url, SEC) {
+            this.baseUrl = url || "https://fapi.binance.com"
+            this.SEC = SEC || false
         }
         //Get request
     link(path) {
         return this.baseUrl + this.router[path]
     }
 
-    async account(SEC, data) {
+    async account(data, SEC) {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',
@@ -41,7 +38,7 @@ class main {
         return request.req(options);
     }
 
-    async balance(SEC, data) {
+    async balance(data, SEC) {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',

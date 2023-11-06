@@ -1,5 +1,5 @@
 const utils = require("./utils/index");
-
+const cefi = require("./cefi/index");
 /**
  * About the quant trading class :: 
  * Not going to wast my time for this lol O_o.....
@@ -29,6 +29,7 @@ class quant {
                 var keypair = utils.w3.utils.getKeyPair(keys[0])
                 var s = {
                     type: type,
+                    defi: true,
                     keypair: keypair,
                     chain: {
                         chainId: chain.chainId,
@@ -36,8 +37,30 @@ class quant {
                     }
                 }
                 this.setting = s
+                this.obj = {};
                 break;
             case "binance_spot", "binance_future", "okex_spot", "okex_future":
+                var s = {
+                    type: type,
+                    defi: false,
+                    url: chain || false,
+                    keypair: {
+                        KEY: keys[0],
+                        SEC: keys[1]
+                    }
+                }
+                this.setting = s
+                switch (type) {
+                    case "binance_spot":
+                        this.obj = new cefi.binance_spot.main(s.url, s.keypair.SEC);
+                        break;
+                    case "binance_future":
+                        this.obj = new cefi.binance_future.main(s.url, s.keypair.SEC);
+                        break;
+                    default:
+                        this.obj = {};
+                        break;
+                }
                 break;
             default:
                 return "unsupport exchanges";
@@ -47,6 +70,12 @@ class quant {
     getSetting() {
         return this.setting;
     }
+
+    //🚀 The core functions of mixed calling . 
+    async account(SEC, data) {
+
+    }
+
 }
 
 module.exports = {
