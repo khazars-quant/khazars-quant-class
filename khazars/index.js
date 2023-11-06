@@ -56,10 +56,10 @@ class quant {
                 this.setting = s
                 switch (type) {
                     case "binance_spot":
-                        this.obj = new cefi.binance_spot.main(s.url, s.keypair.SEC);
+                        this.obj = new cefi.binance_spot.main(s.url, s.keypair.KEY, s.keypair.SEC);
                         break;
                     case "binance_future":
-                        this.obj = new cefi.binance_future.main(s.url, s.keypair.SEC);
+                        this.obj = new cefi.binance_future.main(s.url, s.keypair.KEY, s.keypair.SEC);
                         break;
                     default:
                         this.obj = {};
