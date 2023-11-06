@@ -1,6 +1,6 @@
 {
     "name": "khazars-quant",
-    "version": "1.0.0",
+    "version": "1.0.1",
     "description": "Working crypto quant trading js ",
     "main": "index.js",
     "scripts": {
