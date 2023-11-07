@@ -13,11 +13,13 @@ class main {
             income: "/fapi/v1/income",
             order: "/fapi/v1/order",
             dual: "/fapi/v1/positionSide/dual",
-            multiAssetsMargin: "/fapi/v1/multiAssetsMargin"
+            multiAssetsMargin: "/fapi/v1/multiAssetsMargin",
+            positionRisk: "/fapi/v2/positionRisk"
         }
         //The default headers of request 
     constructor(url, KEY, SEC) {
             this.baseUrl = url || "https://fapi.binance.com"
+            this.KEY = KEY || false
             this.SEC = SEC || false
         }
         //Get request
@@ -31,7 +33,7 @@ class main {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',
-            'url': link(account) + "?" + data.path + '&signature=' + data.sign,
+            'url': this.link("account") + "?" + data.path + '&signature=' + data.sign,
             'headers': {
                 'Content-Type': 'application/json',
                 'X-MBX-APIKEY': KEY
@@ -46,7 +48,22 @@ class main {
         data = await sign.signData(SEC, data)
         var options = {
             'method': 'GET',
-            'url': link(balance) + "?" + data.path + '&signature=' + data.sign,
+            'url': this.link("balance") + "?" + data.path + '&signature=' + data.sign,
+            'headers': {
+                'Content-Type': 'application/json',
+                'X-MBX-APIKEY': KEY
+            }
+        };
+        return request.req(options);
+    }
+
+    async positionRisk(data, KEY, SEC) {
+        KEY = KEY || this.KEY
+        SEC = SEC || this.SEC
+        data = await sign.signData(SEC, data)
+        var options = {
+            'method': 'GET',
+            'url': this.link("positionRisk") + "?" + data.path + '&signature=' + data.sign,
             'headers': {
                 'Content-Type': 'application/json',
                 'X-MBX-APIKEY': KEY
