@@ -18,8 +18,10 @@
 
 ## How should i run the example / test 
 
-```node example.js```
+```node test.js```
 
-## Why not pack it by NPM
+**You can also find the npm ** [Here](https://www.npmjs.com/package/khazars-quant)
 
-** Currently working on it . **
+**Or**
+
+```npm i khazars-quant```

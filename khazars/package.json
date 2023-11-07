@@ -1,6 +1,6 @@
 {
     "name": "khazars-quant",
-    "version": "1.0.1",
+    "version": "1.0.3",
     "description": "Working crypto quant trading js ",
     "main": "index.js",
     "scripts": {
@@ -12,7 +12,11 @@
         "binance"
     ],
     "author": "carzygod",
-    "license": "ISC",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/khazars-quant/khazars-quant-examples/issues"
+    },
+    "homepage": "https://github.com/khazars-quant/khazars-quant-examples#readme",
     "dependencies": {
         "bignumber.js": "^9.1.2",
         "dotenv": "^16.3.1",
