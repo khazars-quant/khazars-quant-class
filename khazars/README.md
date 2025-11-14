@@ -15,8 +15,23 @@
     - [ ] Okex U-future
     - [ ] Bybit spot
     - [ ] Bybit U-future
+    - [x] Hyperliquid spot (via `@nktkas/hyperliquid`)
+    - [x] Hyperliquid perpetuals (via `@nktkas/hyperliquid`)
 
-## How should i run the example / test 
+### Hyperliquid 现货/永续接口
+
+```js
+const { quant } = require("khazars-quant");
+const hyperSpot = new quant("hyperliquid_spot", ["pubKey", "privKey"]);
+const hyperPerp = new quant("hyperliquid_perp", ["pubKey", "privKey"], { defaultLeverage: 5 });
+
+await hyperSpot.placeOrder({ symbol: "BTC-USDC", side: "buy", price: 25000, size: 0.1 });
+await hyperPerp.setLeverage({ leverage: 10 });
+```
+
+> 依赖 `@nktkas/hyperliquid` SDK。若该模块无法下载，khazars 会自动启用内置 stub 以方便本地调试与测试。
+
+## How should i run the example / test
 
 Install the npm package
 
