@@ -44,6 +44,8 @@ class quant {
             case "binance_future":
             case "okex_spot":
             case "okex_future":
+            case "hyperliquid_spot":
+            case "hyperliquid_perp":
                 var s = {
                     type: type,
                     defi: false,
@@ -61,6 +63,12 @@ class quant {
                     case "binance_future":
                         this.obj = new cefi.binance_future.main(s.url, s.keypair.KEY, s.keypair.SEC);
                         break;
+                    case "hyperliquid_spot":
+                        this.obj = new cefi.hyperliquid_spot.main(s.url, s.keypair.KEY, s.keypair.SEC);
+                        break;
+                    case "hyperliquid_perp":
+                        this.obj = new cefi.hyperliquid_perp.main(s.url, s.keypair.KEY, s.keypair.SEC);
+                        break;
                     default:
                         this.obj = {};
                         break;
@@ -69,13 +77,32 @@ class quant {
             default:
                 return "unsupport exchanges";
         }
+        this.bindExchangeMethods();
     }
 
     getSetting() {
         return this.setting;
     }
 
-    //🚀 The core functions of mixed calling . 
+    bindExchangeMethods() {
+        if (!this.obj) {
+            return;
+        }
+        const proto = Object.getPrototypeOf(this.obj);
+        Object.getOwnPropertyNames(proto)
+            .filter((name) => name !== "constructor")
+            .forEach((name) => {
+                if (typeof this.obj[name] !== "function") {
+                    return;
+                }
+                if (this[name]) {
+                    return;
+                }
+                this[name] = this.obj[name].bind(this.obj);
+            });
+    }
+
+    //🚀 The core functions of mixed calling .
     async account(data) {
         return this.obj.account(data)
     }
